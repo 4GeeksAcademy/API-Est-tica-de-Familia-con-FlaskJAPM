@@ -28,10 +28,14 @@ def handle_invalid_usage(error):
 def sitemap():
     return generate_sitemap(app)
 
-
+@app.route('/members', methods=['GET'])
+def get_all_members():
+    members = jackson_family.get_all_members()
+    return jsonify(members), 200
+     
 @app.route('/members/<int:id>', methods=['GET'])
 def get_single(id):
-    member = jackson_family.get_members(id)
+    member = jackson_family.get_member(id)
     if member is None:
         return jsonify("error"), 404 
        
