@@ -13,21 +13,21 @@ class FamilyStructure:
             {
                 "id": self._generate_id(),
                 "first_name": "John",
-                "last_name": "Jakson",
+                "last_name": "Jackson",
                 "age": 33,
                 "lucky_numbers": [7, 13, 22]
-            }
+            },
             {
                 "id": self._generate_id(),
                 "first_name": "Jane",
-                "last_name": "Jakson",
+                "last_name": "Jackson",
                 "age": 35,
                 "lucky_numbers": [10, 14, 3]
-            }
+            },
             {
                 "id": self._generate_id(),
                 "first_name": "Jimmy",
-                "last_name": "Jakson",
+                "last_name": "Jackson",
                 "age": 5,
                 "lucky_numbers": [1]
             }
@@ -49,7 +49,7 @@ class FamilyStructure:
     def delete_member(self, id):
         for member in self._members:
             if member ["id"] == id:
-                self._member.remove(member)
+                self._members.remove(member)
                 return True
         return False
 

@@ -29,14 +29,32 @@ def sitemap():
     return generate_sitemap(app)
 
 
-@app.route('/members/int:id>', methods=['GET'])
+@app.route('/members/<int:id>', methods=['GET'])
 def get_single(id):
     member = jackson_family.get_members(id)
     if member is None:
-        return jsonify(member), 200
-    return jsonify(error) 404
+        return jsonify("error"), 404 
+       
+    return jsonify(member), 200
     
+@app.route('/members', methods=['POST'])
+def add_member ():
+    body = request.get_json()
+    if body is None: 
+        return jsonify("error"), 400
+    
+    new_member = jackson_family.add_member(body)
+    return jsonify(new_member), 200 
 
+@app.route('/members/<int:id>', methods=['DELETE'])
+def delete_member (id):
+    delete = jackson_family.delete_member(id)
+    if delete:
+        return jsonify ({"done" : True} ) 
+    else:
+        return jsonify("error"), 400
+    
+    
 
 
 # This only runs if `$ python src/app.py` is executed
